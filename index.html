@@ -246,7 +246,7 @@
   /* STATS BAR */
   .stats-bar {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 15px;
     margin: 25px 0;
   }
@@ -431,6 +431,184 @@
     color: #555;
   }
 
+  /* PRESTIGE BADGE */
+  .prestige-badge {
+    text-align: center;
+    margin: 0 0 20px;
+    padding: 18px 25px;
+    background: var(--card-bg);
+    border: 2px solid var(--prestige-color, var(--neon-cyan));
+    border-radius: 16px;
+    box-shadow:
+      0 0 15px color-mix(in srgb, var(--prestige-color, var(--neon-cyan)) 30%, transparent),
+      inset 0 0 20px color-mix(in srgb, var(--prestige-color, var(--neon-cyan)) 5%, transparent);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .prestige-badge::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--prestige-color, var(--neon-cyan));
+    box-shadow: 0 0 10px var(--prestige-color, var(--neon-cyan));
+  }
+
+  .prestige-badge.has-prestige {
+    animation: prestige-pulse 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes prestige-pulse {
+    from { box-shadow: 0 0 15px color-mix(in srgb, var(--prestige-color) 30%, transparent); }
+    to { box-shadow: 0 0 30px color-mix(in srgb, var(--prestige-color) 50%, transparent), 0 0 60px color-mix(in srgb, var(--prestige-color) 20%, transparent); }
+  }
+
+  .prestige-level {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9em;
+    color: var(--prestige-color, var(--neon-cyan));
+    text-shadow: 0 0 10px var(--prestige-color, var(--neon-cyan));
+    letter-spacing: 4px;
+    margin-bottom: 6px;
+  }
+
+  .prestige-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85em;
+    color: #aaa;
+    letter-spacing: 2px;
+  }
+
+  /* CURRENT CARD LABEL */
+  .current-card-label {
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.55em;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 8px var(--neon-cyan);
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+  }
+
+  /* HALL OF SHAME */
+  .hall-of-shame {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 25px;
+    margin: 25px 0;
+  }
+
+  .hall-of-shame h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1em;
+    color: var(--neon-yellow);
+    text-shadow: 0 0 10px var(--neon-yellow);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .shame-card {
+    border: 1px solid var(--neon-purple);
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    background: rgba(176, 38, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shame-card::before {
+    content: 'COMPLETED';
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.4em;
+    color: var(--neon-green);
+    text-shadow: 0 0 5px var(--neon-green);
+    opacity: 0.7;
+  }
+
+  .shame-card-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+
+  .shame-card-number {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.6em;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 5px var(--neon-cyan);
+  }
+
+  .shame-card-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85em;
+    color: var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink);
+  }
+
+  .shame-card-slots {
+    display: flex;
+    gap: 8px;
+    margin: 8px 0;
+  }
+
+  .mini-stamp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    font-size: 0.9em;
+    border: 1px solid var(--neon-pink);
+    border-radius: 6px;
+    background: rgba(255, 45, 149, 0.1);
+    box-shadow: 0 0 5px rgba(255, 45, 149, 0.2);
+  }
+
+  .shame-card-meta {
+    font-size: 0.7em;
+    color: #666;
+    margin-top: 6px;
+  }
+
+  .shame-card-details {
+    margin-top: 8px;
+  }
+
+  .shame-card-details summary {
+    cursor: pointer;
+    color: var(--neon-cyan);
+    font-size: 0.75em;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .shame-card-details summary:hover { opacity: 1; }
+
+  .shame-card-details ul {
+    list-style: none;
+    margin-top: 8px;
+    padding-left: 0;
+  }
+
+  .shame-card-details li {
+    padding: 4px 0;
+    font-size: 0.75em;
+    color: #999;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .shame-card-details li:last-child { border-bottom: none; }
+
   /* FOOTER */
   .footer {
     text-align: center;
@@ -578,9 +756,12 @@
   @media (max-width: 600px) {
     .header h1 { font-size: 1em; }
     .slots { grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    .stats-bar { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
     .stat-box { padding: 15px; }
     .incident .chaos-points { position: static; margin-top: 6px; }
+    .prestige-level { font-size: 0.7em; letter-spacing: 2px; }
+    .prestige-title { font-size: 0.7em; }
+    .shame-card-slots { flex-wrap: wrap; }
   }
 </style>
 </head>
@@ -596,9 +777,16 @@
     <div class="tagline">"8 punches and you win a mass ping"</div>
   </div>
 
+  <!-- PRESTIGE BADGE -->
+  <div class="prestige-badge" id="prestige-badge">
+    <div class="prestige-level" id="prestige-level">ROOKIE</div>
+    <div class="prestige-title" id="prestige-title">🐾 Unranked Gremlin 🐾</div>
+  </div>
+
   <!-- PUNCH CARD -->
   <div class="punch-card">
     <div class="punch-card-title">☆ OFFICIAL PUNCH CARD ☆</div>
+    <div class="current-card-label" id="current-card-num">Card #1</div>
     <div class="slots" id="slots"></div>
     <div class="punch-progress">
       <div class="count" id="punch-count">0</div>
@@ -620,6 +808,10 @@
     <div class="stat-box">
       <div class="stat-value" id="threat-level">LOW</div>
       <div class="stat-label">Threat Level</div>
+    </div>
+    <div class="stat-box stat-box-burn">
+      <div class="stat-value" id="cards-burned" style="color: var(--neon-yellow); text-shadow: 0 0 10px var(--neon-yellow);">0</div>
+      <div class="stat-label">Cards Burned 🔥</div>
     </div>
   </div>
 
@@ -644,6 +836,12 @@
   <div class="incident-log">
     <h2>📋 Incident Report Log</h2>
     <div id="incident-list"></div>
+  </div>
+
+  <!-- HALL OF SHAME -->
+  <div class="hall-of-shame" id="hall-of-shame" style="display:none;">
+    <h2>🏛️ Hall of Shame — Completed Cards</h2>
+    <div id="shame-list"></div>
   </div>
 
   <!-- FOOTER -->
@@ -695,8 +893,18 @@
     'Skara is COOKING 🔥',
     'TWO MORE AND SHE WINS... something.',
     'ONE. MORE. PUNCH. 😰',
-    '🎉 CARD COMPLETE! Achievement: Professional Chaos Agent 🎉'
+    '🎉 CARD COMPLETE! PRESTIGE UNLOCKED! 🎉'
   ];
+
+  const PRESTIGE_TITLES = [
+    { title: 'Unranked Gremlin', emoji: '🐾' },              // Card 0 (in progress, no completions)
+    { title: 'Professional Chaos Agent', emoji: '🏆' },       // Card 1 completed
+    { title: 'Certified Menace to Society', emoji: '🎖️' },   // Card 2 completed
+    { title: 'Eldritch Horror of Discord', emoji: '👑' },     // Card 3 completed
+    { title: 'Avatar of Pure Entropy', emoji: '🌀' },         // Card 4 completed
+    { title: 'She Who Must Not Be Pinged', emoji: '⚡' },     // Card 5 completed
+  ];
+  const TRANSCENDED = { title: 'TRANSCENDED MORTAL MISCHIEF', emoji: '✨' };
 
   const DEFAULT_INCIDENTS = [
     {
@@ -765,48 +973,106 @@
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }
 
+  // ===== PRESTIGE HELPERS =====
+  function getPrestigeInfo() {
+    const totalPunched = state.incidents.filter(i => i.punched).length;
+    const cardsCompleted = Math.floor(totalPunched / 8);
+    const currentCardPunches = totalPunched % 8;
+    const currentCardNumber = cardsCompleted + 1;
+    return { totalPunched, cardsCompleted, currentCardPunches, currentCardNumber };
+  }
+
+  function getPrestigeTitle(cardsCompleted) {
+    if (cardsCompleted >= 6) return TRANSCENDED;
+    return PRESTIGE_TITLES[cardsCompleted] || PRESTIGE_TITLES[0];
+  }
+
+  function getCompletedCards() {
+    const { cardsCompleted } = getPrestigeInfo();
+    const punchedIncidents = state.incidents
+      .filter(i => i.punched)
+      .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+    const cards = [];
+    for (let c = 0; c < cardsCompleted; c++) {
+      const cardIncidents = punchedIncidents.slice(c * 8, (c + 1) * 8);
+      const title = getPrestigeTitle(c + 1);
+      const completedDate = cardIncidents.length === 8
+        ? cardIncidents[7].timestamp
+        : null;
+      cards.push({
+        number: c + 1,
+        title: title.title,
+        emoji: title.emoji,
+        incidents: cardIncidents,
+        completedDate
+      });
+    }
+    return cards;
+  }
+
   // ===== RENDER =====
   function render() {
+    renderPrestigeBadge();
     renderSlots();
     renderStats();
     renderMeter();
     renderIncidents();
+    renderHallOfShame();
     document.getElementById('issue-date').textContent = new Date(state.createdAt).toLocaleDateString();
+  }
+
+  function renderPrestigeBadge() {
+    const { cardsCompleted, currentCardNumber } = getPrestigeInfo();
+    const title = getPrestigeTitle(cardsCompleted);
+    const badge = document.getElementById('prestige-badge');
+    const titleEl = document.getElementById('prestige-title');
+    const levelEl = document.getElementById('prestige-level');
+
+    levelEl.textContent = cardsCompleted > 0
+      ? `PRESTIGE ${cardsCompleted}`
+      : 'ROOKIE';
+    titleEl.textContent = `${title.emoji} ${title.title} ${title.emoji}`;
+
+    badge.className = 'prestige-badge' + (cardsCompleted > 0 ? ' has-prestige' : '');
+    badge.style.setProperty('--prestige-color',
+      cardsCompleted >= 6 ? 'var(--neon-yellow)' :
+      cardsCompleted >= 4 ? 'var(--neon-pink)' :
+      cardsCompleted >= 2 ? 'var(--neon-purple)' :
+      cardsCompleted >= 1 ? 'var(--neon-orange)' :
+      'var(--neon-cyan)'
+    );
   }
 
   function renderSlots() {
     const container = document.getElementById('slots');
-    const punchedCount = state.incidents.filter(i => i.punched).length;
-    const displayCount = Math.min(punchedCount, 8);
+    const { currentCardPunches, currentCardNumber, cardsCompleted } = getPrestigeInfo();
 
     container.innerHTML = '';
     for (let i = 0; i < 8; i++) {
       const slot = document.createElement('div');
-      slot.className = 'slot' + (i < displayCount ? ' punched' : '');
+      slot.className = 'slot' + (i < currentCardPunches ? ' punched' : '');
       slot.setAttribute('data-number', i + 1);
-      if (i < displayCount) {
+      if (i < currentCardPunches) {
         slot.innerHTML = `<span class="punch-stamp">${STAMPS[i]}</span>`;
       }
       container.appendChild(slot);
     }
 
-    document.getElementById('punch-count').textContent = displayCount;
+    document.getElementById('punch-count').textContent = currentCardPunches;
+    document.getElementById('current-card-num').textContent = `Card #${currentCardNumber}`;
+
     const msg = document.getElementById('reward-msg');
-    msg.textContent = REWARD_MSGS[displayCount] || REWARD_MSGS[8];
-    msg.style.color = displayCount >= 8 ? 'var(--neon-yellow)' : displayCount >= 5 ? 'var(--neon-orange)' : 'var(--neon-cyan)';
-    if (displayCount >= 8) {
-      msg.style.textShadow = '0 0 15px var(--neon-yellow)';
-      msg.style.animation = 'title-glow 1s ease-in-out infinite alternate';
-    }
+    msg.textContent = REWARD_MSGS[currentCardPunches] || '';
+    msg.style.color = currentCardPunches >= 5 ? 'var(--neon-orange)' : 'var(--neon-cyan)';
+    msg.style.textShadow = '';
+    msg.style.animation = '';
   }
 
   function renderStats() {
     const total = state.incidents.length;
     const chaos = state.incidents.reduce((sum, i) => sum + i.points, 0);
-    const maxSeverity = state.incidents.reduce((max, i) => {
-      const s = SEVERITY_POINTS[i.severity] || 0;
-      return s > max ? s : max;
-    }, 0);
+    const { cardsCompleted } = getPrestigeInfo();
 
     let threat = 'LOW';
     let threatColor = 'var(--neon-green)';
@@ -820,6 +1086,7 @@
     threatEl.textContent = threat;
     threatEl.style.color = threatColor;
     threatEl.style.textShadow = `0 0 10px ${threatColor}`;
+    document.getElementById('cards-burned').textContent = cardsCompleted;
   }
 
   function renderMeter() {
@@ -844,6 +1111,41 @@
         <div class="desc">${escHtml(inc.desc)}</div>
         <div class="timestamp">📅 ${new Date(inc.timestamp).toLocaleString()}</div>
         <div class="chaos-points">+${inc.points} CP</div>
+      </div>
+    `).join('');
+  }
+
+  function renderHallOfShame() {
+    const container = document.getElementById('hall-of-shame');
+    const cards = getCompletedCards();
+
+    if (cards.length === 0) {
+      container.style.display = 'none';
+      return;
+    }
+
+    container.style.display = 'block';
+    const list = document.getElementById('shame-list');
+    list.innerHTML = cards.map(card => `
+      <div class="shame-card">
+        <div class="shame-card-header">
+          <span class="shame-card-number">CARD #${card.number}</span>
+          <span class="shame-card-title">${card.emoji} ${card.title} ${card.emoji}</span>
+        </div>
+        <div class="shame-card-slots">
+          ${STAMPS.map(s => `<span class="mini-stamp">${s}</span>`).join('')}
+        </div>
+        <div class="shame-card-meta">
+          Completed: ${card.completedDate ? new Date(card.completedDate).toLocaleDateString() : '???'}
+          · ${card.incidents.length} incidents
+          · ${card.incidents.reduce((s, i) => s + i.points, 0)} CP
+        </div>
+        <details class="shame-card-details">
+          <summary>View incidents</summary>
+          <ul>
+            ${card.incidents.map(i => `<li><span class="severity ${i.severity}" style="font-size:0.6em;padding:1px 5px;">${i.severity}</span> ${escHtml(i.title)}</li>`).join('')}
+          </ul>
+        </details>
       </div>
     `).join('');
   }
@@ -877,7 +1179,7 @@
       return;
     }
 
-    const punchedCount = state.incidents.filter(i => i.punched).length;
+    const beforeInfo = getPrestigeInfo();
 
     state.incidents.push({
       id: state.nextId++,
@@ -886,13 +1188,23 @@
       severity,
       points,
       timestamp: new Date().toISOString(),
-      punched: punchedCount < 8
+      punched: true
     });
 
     saveState();
     closeModal();
+
+    const afterInfo = getPrestigeInfo();
+    const prestiged = afterInfo.cardsCompleted > beforeInfo.cardsCompleted;
+
     render();
-    showToast(punchedCount < 8 ? '👊 PUNCHED! Another one on the card!' : '📝 Logged! (Card already full tho 💀)');
+
+    if (prestiged) {
+      const newTitle = getPrestigeTitle(afterInfo.cardsCompleted);
+      showToast(`🌟 PRESTIGE ${afterInfo.cardsCompleted}! ${newTitle.emoji} ${newTitle.title}!`);
+    } else {
+      showToast('👊 PUNCHED! Another one on the card!');
+    }
   }
 
   function showToast(msg) {
